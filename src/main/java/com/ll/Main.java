@@ -5,16 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("==게시판 앱==");
-
-        while(true){
-            System.out.println("명령");
-            String command = sc.nextLine();
-
-            if (command.equals("종료")){
-                break;
-            }
-        }
+        new APP(sc).run();
 
         sc.close();
     }
