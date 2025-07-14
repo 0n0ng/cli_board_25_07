@@ -10,12 +10,13 @@ public class APP {
     APP(Scanner sc) {
         this.sc = sc;
     }
+    List<Article> articleList = new ArrayList<>();
 
     public void run() {
         System.out.println("==게시판 앱==");
 
         int lastId = 1;
-        List<Article> articleList = new ArrayList<>();
+
 
 //        번호 id = new 번호();
 //        제목 subject = new 제목();
@@ -55,13 +56,15 @@ public class APP {
                 String value = paramsStr[1];
                 int idx = Integer.parseInt(value);
 
-                Article article = null;
+                Article article = _getFindById(idx);
 
-                for (int i = 0; i < articleList.size(); i++) {
-                    if (articleList.get(i).getId() == idx) {
-                        article = articleList.get(i);
-                    }
-                }
+//                Article article = null;
+//
+//                for (int i = 0; i < articleList.size(); i++) {
+//                    if (articleList.get(i).getId() == idx) {
+//                        article = articleList.get(i);
+//                    }
+//                }
 
                 if ( article == null ) {
                     System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
@@ -77,13 +80,7 @@ public class APP {
                 String value = paramsStr[1];
                 int idx = Integer.parseInt(value);
 
-                Article article = null;
-
-                for (Article item : articleList) {
-                    if (item.getId() == idx) {
-                        article =item;
-                    }
-                }
+                Article article = _getFindById(idx);
 
                 if ( article == null ) {
                     System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
@@ -94,7 +91,7 @@ public class APP {
                     String modifySubject = sc.nextLine();
                     article.setSubject(modifySubject);
 
-                    System.out.printf("내용(기존) : %s\n", article.getSubject());
+                    System.out.printf("내용(기존) : %s\n", article.getContent());
                     System.out.print("내용 :");
                     String modifyContent = sc.nextLine();
                     article.setContent(modifyContent);
@@ -105,6 +102,15 @@ public class APP {
 
             }
         }
+    }
+
+    private Article _getFindById(int id) {
+        for (Article item : articleList) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
     }
 }
 
