@@ -32,9 +32,9 @@ public class App {
             } else if (command.equals("목록")) {
                 articleController.list();
             } else if (command.startsWith("삭제")) {
-                articleController.delete(request.getIdx());
+                articleController.delete(request);
             } else if (command.startsWith("수정")) {
-                articleController.modify(request.getIdx());
+                articleController.modify(request);
             }
         }
     }
