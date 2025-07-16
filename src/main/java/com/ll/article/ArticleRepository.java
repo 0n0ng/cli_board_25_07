@@ -11,7 +11,7 @@ public class ArticleRepository {
     int lastId = 1;
 
     public int create(String subject, String content) {
-        String sql = String.format("insert into article swet subject = '%s', content = '%s'", subject, content);
+        String sql = String.format("insert into article set subject = '%s', content = '%s'", subject, content);
         int id = Container.getDBConnection().insert(sql);
 
         return id;
