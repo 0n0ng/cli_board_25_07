@@ -3,9 +3,7 @@ package com.ll.article;
 import com.ll.Container;
 import com.ll.Request;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class ArticleController {
@@ -46,13 +44,13 @@ public class ArticleController {
             return;
         }
 
-        Article article = _getFindById(id);
+        Article article = articleService.getFindById(id);
 
         if (article == null) {
             System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
         }
         else {
-            articleList.remove(article);
+            articleService.remove(article);
             System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
         }
     }
@@ -65,8 +63,7 @@ public class ArticleController {
             return;
         }
 
-
-        Article article = _getFindById(id);
+        Article article = articleService.getFindById(id);
 
         if (article == null) {
             System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
@@ -84,15 +81,6 @@ public class ArticleController {
 
             System.out.printf("%d번 게시물이 수정되었습니다.\n", id);
         }
-    }
-
-    private Article _getFindById(int id) {
-        for ( Article item : articleList ) {
-            if ( item.getId() == id ) {
-                return item;
-            }
-        }
-        return null;
     }
 
     private int _getIntParam(String id ){
