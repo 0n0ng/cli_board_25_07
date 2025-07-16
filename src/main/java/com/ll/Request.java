@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Request {
-    private String actionCode;
-    private Map<String, String> params = new HashMap<>();
+    private final String actionCode;
+    private final Map<String, String> params = new HashMap<>();
 
-    public Request(String command){
+    public Request(String command) {
         String[] commandList = command.split("\\?", 2);
 
         actionCode = commandList[0];
@@ -16,19 +16,20 @@ public class Request {
 
         String[] paramsList = commandList[1].split("&");
 
-        for ( String pramsRow : paramsList) {
-            String[] paramsStr = pramsRow.split ("=",2);
+        for (String pramsRow : paramsList) {
+            String[] paramsStr = pramsRow.split("=", 2);
             String key = paramsStr[0];
             String value = paramsStr[1];
             params.put(key, value);
         }
     }
 
-    public String getActionCode (){
+    public String getActionCode() {
         return actionCode;
     }
+
     public String getParams(String key) {
-            return params.get(key);
+        return params.get(key);
     }
 
 }
